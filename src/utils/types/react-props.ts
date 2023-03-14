@@ -1,0 +1,1 @@
+export type ReactProps<T extends keyof JSX.IntrinsicElements> = React.ComponentPropsWithoutRef<T>;

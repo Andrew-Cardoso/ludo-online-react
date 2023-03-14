@@ -1,0 +1,590 @@
+#board {
+	background-color: #2b1700;
+	border: 0.75rem solid #2b1700;
+	position: relative;
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 2fr 1fr 2fr;
+	grid-template-areas:
+		'top-area'
+		'mid-area'
+		'bot-area';
+}
+
+/* #board.width {
+	width: 100%;
+	height: unset;
+	align-self: baseline;
+}
+
+#board.height {
+	width: unset;
+	height: 100%;
+} */
+
+#board > section {
+	display: grid;
+	grid-template-columns: 2fr 1fr 2fr;
+	grid-template-rows: 1fr;
+}
+
+#board > section:first-child {
+	grid-area: top-area;
+}
+
+#board > section:last-child {
+	grid-area: bot-area;
+}
+
+#board > section:nth-child(2) {
+	grid-area: mid-area;
+}
+
+#board .initial-area {
+	width: 100%;
+	height: 100%;
+	background-color: white;
+	display: grid;
+	place-items: center;
+	border: 0.25rem solid #2b1700;
+	position: relative;
+	z-index: 1;
+}
+
+#board .initial-area::before {
+	content: '';
+	position: absolute;
+	top: 1rem;
+	left: 1rem;
+	right: 1rem;
+	bottom: 1rem;
+	border: 0.25rem solid currentColor;
+	filter: blur(0.1rem);
+}
+
+#board .initial-area.player-red {
+	color: var(--game-red);
+	margin-top: -0.25rem;
+	margin-left: -0.25rem;
+}
+
+#board .initial-area.player-blue {
+	margin-top: -0.25rem;
+	margin-left: 0.25rem;
+	color: var(--game-blue);
+}
+
+#board .initial-area.player-yellow {
+	margin-top: 0.25rem;
+	margin-left: -0.25rem;
+	color: var(--game-yellow);
+}
+
+#board .initial-area.player-green {
+	color: var(--game-green);
+	margin-top: 0.25rem;
+	margin-left: 0.25rem;
+}
+
+#board .player-circle {
+	width: calc(80% - 1rem);
+	height: calc(80% - 1rem);
+	display: grid;
+	place-items: center;
+	grid-template-rows: 1fr 1fr;
+	grid-template-columns: 1fr 1fr;
+	background-color: currentColor;
+	border-radius: 50%;
+	transform: rotateZ(45deg);
+}
+
+#board .pawn-initial-circle {
+	width: 75%;
+	height: 75%;
+	background-color: white;
+	border-radius: 50%;
+}
+
+#board .road-container-blue,
+#board .road-container-yellow {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: repeat(6, 1fr);
+}
+
+#board .middle-road {
+	display: grid;
+	grid-template-columns: 2fr 1fr 2fr;
+	grid-template-rows: 1fr;
+}
+
+#board .road-container-red,
+#board .road-container-green {
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	grid-template-rows: 1fr 1fr 1fr;
+}
+
+#board .road-container-blue {
+	z-index: 1;
+	color: var(--game-blue);
+	grid-template-areas:
+		'road-18 road-19 road-20'
+		'road-17 final-blue-0 road-21'
+		'road-16 final-blue-1 road-22'
+		'road-15 final-blue-2 road-23'
+		'road-14 final-blue-3 road-24'
+		'road-13 final-blue-4 road-25';
+}
+
+#board .road-container-yellow {
+	z-index: 1;
+	color: var(--game-yellow);
+	grid-template-areas:
+		'road-51 final-yellow-4 road-39'
+		'road-50 final-yellow-3 road-40'
+		'road-49 final-yellow-2 road-41'
+		'road-48 final-yellow-1 road-42'
+		'road-47 final-yellow-0 road-43'
+		'road-46 road-45 road-44';
+}
+
+#board .road-container-red {
+	z-index: 1;
+	color: var(--game-red);
+	grid-template-areas:
+		'road-7 road-8 road-9 road-10 road-11 road-12'
+		'road-6 final-red-0 final-red-1 final-red-2 final-red-3 final-red-4'
+		'road-5 road-4 road-3 road-2 road-1 road-0';
+}
+
+#board .road-container-green {
+	z-index: 1;
+	color: var(--game-green);
+	grid-template-areas:
+		'road-26 road-27 road-28 road-29 road-30 road-31'
+		'final-green-4 final-green-3 final-green-2 final-green-1 final-green-0 road-32'
+		'road-38 road-37 road-36 road-35 road-34 road-33';
+}
+
+#board .podium-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr 1fr;
+	transform: rotateZ(-45deg) scale(1.5);
+	z-index: 0;
+}
+
+#board .podium-container > section {
+	/* border: thin solid #2b1700; */
+	position: relative;
+	outline: thin solid #2b1700;
+}
+
+#board .podium-green > * {
+	position: absolute;
+	top: calc(25% - 0.8rem);
+	left: calc(25% - 0.8rem);
+	transform: rotateZ(-45deg);
+	width: 2rem;
+	height: 2rem;
+}
+
+#board .podium-yellow > * {
+	position: absolute;
+	top: calc(25% - 0.8rem);
+	right: calc(25% - 0.8rem);
+	transform: rotateZ(45deg);
+	width: 2rem;
+	height: 2rem;
+}
+
+#board .podium-red > * {
+	position: absolute;
+	bottom: calc(25% - 0.8rem);
+	right: calc(25% - 0.8rem);
+	transform: rotateZ(135deg);
+	width: 2rem;
+	height: 2rem;
+}
+
+#board .podium-blue > * {
+	position: absolute;
+	bottom: calc(25% - 0.8rem);
+	left: calc(25% - 0.8rem);
+	transform: rotateZ(225deg);
+	width: 2rem;
+	height: 2rem;
+}
+
+#board .podium-red {
+	background-color: var(--game-red);
+}
+
+#board .podium-blue {
+	background-color: var(--game-blue);
+}
+
+#board .podium-yellow {
+	background-color: var(--game-yellow);
+}
+
+#board .podium-green {
+	background-color: var(--game-green);
+}
+
+.pawn {
+	z-index: 1000;
+	filter: drop-shadow(0 0 0.15rem black);
+}
+
+.road-square {
+	display: grid;
+	place-items: center;
+	background-color: white;
+	border: thin solid #2b1700;
+}
+
+.road-container-blue .road-square > * {
+	transform: rotateZ(180deg);
+}
+
+.road-container-red .road-square > * {
+	transform: rotateZ(90deg);
+}
+
+.road-container-green .road-square > * {
+	transform: rotateZ(-90deg);
+}
+
+.road-square > * {
+	width: 80%;
+	height: 80%;
+}
+
+.final-square {
+	background-color: currentColor;
+	border: thin solid #2b1700;
+}
+
+.dice-red ._space3d .defaultFace {
+	background-color: var(--game-red) !important;
+}
+
+.dice-green ._space3d .defaultFace {
+	background-color: var(--game-green) !important;
+}
+
+.dice-blue ._space3d .defaultFace {
+	background-color: var(--game-blue) !important;
+}
+
+.dice-yellow ._space3d .defaultFace {
+	transition: background-color 0.5s ease;
+	background-color: var(--game-yellow) !important;
+}
+
+._space3d {
+	filter: unset !important;
+	pointer-events: none !important;
+}
+
+.karyogamy.show small {
+	display: block !important;
+}
+
+.karyogamy.hide {
+	display: none;
+}
+
+#road-0 {
+	grid-area: road-0;
+}
+
+#road-1 {
+	grid-area: road-1;
+}
+
+#road-2 {
+	grid-area: road-2;
+}
+
+#road-3 {
+	grid-area: road-3;
+}
+
+#road-4 {
+	grid-area: road-4;
+}
+
+#road-5 {
+	grid-area: road-5;
+}
+
+#road-6 {
+	grid-area: road-6;
+}
+
+#road-7 {
+	grid-area: road-7;
+}
+
+#road-8 {
+	grid-area: road-8;
+}
+
+#road-9 {
+	grid-area: road-9;
+}
+
+#road-10 {
+	grid-area: road-10;
+}
+
+#road-11 {
+	grid-area: road-11;
+}
+
+#road-12 {
+	grid-area: road-12;
+}
+
+#road-13 {
+	grid-area: road-13;
+}
+
+#road-14 {
+	grid-area: road-14;
+}
+
+#road-15 {
+	grid-area: road-15;
+}
+
+#road-16 {
+	grid-area: road-16;
+}
+
+#road-17 {
+	grid-area: road-17;
+}
+
+#road-18 {
+	grid-area: road-18;
+}
+
+#road-19 {
+	grid-area: road-19;
+}
+
+#road-20 {
+	grid-area: road-20;
+}
+
+#road-21 {
+	grid-area: road-21;
+}
+
+#road-22 {
+	grid-area: road-22;
+}
+
+#road-23 {
+	grid-area: road-23;
+}
+
+#road-24 {
+	grid-area: road-24;
+}
+
+#road-25 {
+	grid-area: road-25;
+}
+
+#road-26 {
+	grid-area: road-26;
+}
+
+#road-27 {
+	grid-area: road-27;
+}
+
+#road-28 {
+	grid-area: road-28;
+}
+
+#road-29 {
+	grid-area: road-29;
+}
+
+#road-30 {
+	grid-area: road-30;
+}
+
+#road-31 {
+	grid-area: road-31;
+}
+
+#road-32 {
+	grid-area: road-32;
+}
+
+#road-33 {
+	grid-area: road-33;
+}
+
+#road-34 {
+	grid-area: road-34;
+}
+
+#road-35 {
+	grid-area: road-35;
+}
+
+#road-36 {
+	grid-area: road-36;
+}
+
+#road-37 {
+	grid-area: road-37;
+}
+
+#road-38 {
+	grid-area: road-38;
+}
+
+#road-39 {
+	grid-area: road-39;
+}
+
+#road-40 {
+	grid-area: road-40;
+}
+
+#road-41 {
+	grid-area: road-41;
+}
+
+#road-42 {
+	grid-area: road-42;
+}
+
+#road-43 {
+	grid-area: road-43;
+}
+
+#road-44 {
+	grid-area: road-44;
+}
+
+#road-45 {
+	grid-area: road-45;
+}
+
+#road-46 {
+	grid-area: road-46;
+}
+
+#road-47 {
+	grid-area: road-47;
+}
+
+#road-48 {
+	grid-area: road-48;
+}
+
+#road-49 {
+	grid-area: road-49;
+}
+
+#road-50 {
+	grid-area: road-50;
+}
+
+#road-51 {
+	grid-area: road-51;
+}
+
+#road-52 {
+	grid-area: road-52;
+}
+
+#final-blue-0 {
+	grid-area: final-blue-0;
+}
+
+#final-blue-1 {
+	grid-area: final-blue-1;
+}
+
+#final-blue-2 {
+	grid-area: final-blue-2;
+}
+
+#final-blue-3 {
+	grid-area: final-blue-3;
+}
+
+#final-blue-4 {
+	grid-area: final-blue-4;
+}
+
+#final-yellow-0 {
+	grid-area: final-yellow-0;
+}
+
+#final-yellow-1 {
+	grid-area: final-yellow-1;
+}
+
+#final-yellow-2 {
+	grid-area: final-yellow-2;
+}
+
+#final-yellow-3 {
+	grid-area: final-yellow-3;
+}
+
+#final-yellow-4 {
+	grid-area: final-yellow-4;
+}
+
+#final-red-0 {
+	grid-area: final-red-0;
+}
+
+#final-red-1 {
+	grid-area: final-red-1;
+}
+
+#final-red-2 {
+	grid-area: final-red-2;
+}
+
+#final-red-3 {
+	grid-area: final-red-3;
+}
+
+#final-red-4 {
+	grid-area: final-red-4;
+}
+
+#final-green-0 {
+	grid-area: final-green-0;
+}
+
+#final-green-1 {
+	grid-area: final-green-1;
+}
+
+#final-green-2 {
+	grid-area: final-green-2;
+}
+
+#final-green-3 {
+	grid-area: final-green-3;
+}
+
+#final-green-4 {
+	grid-area: final-green-4;
+}
