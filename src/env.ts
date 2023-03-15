@@ -1,1 +1,1 @@
-export const SOCKET_URL = 'localhost:3333';
+export const SOCKET_URL = 'wss://ludo-online.herokuapp.com';

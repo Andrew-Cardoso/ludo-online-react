@@ -2,11 +2,10 @@ import {useContext} from 'react';
 import {GameContext} from '../../../../services/Game/game.context';
 import {Winners} from '../../../../services/Game/interfaces/winners';
 import {styled} from '../../../../utils/stitches/breakpoints';
-import video from '../../../../../public/videos/fireworks.mp4';
 import {GiBackwardTime, GiMedal, GiMedalSkull} from 'react-icons/gi';
 import {Pawn} from '../../../Pawn';
 import {Button} from '../../../Button';
-import {ColorEnum} from '../../../../services/Game/interfaces/colors';
+import video from '../../../../assets/videos/fireworks.mp4';
 
 // const squeeze = keyframes({
 // 	'0%': {transform: 'scaleX(0.8) scaleY(1.2) '},
