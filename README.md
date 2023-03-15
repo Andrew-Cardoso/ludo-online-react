@@ -64,8 +64,14 @@ When I was digging into Ludo's rules I found many disagreements between players,
 
 ***Developer Note:***
 ```
-The rule that allows you to put 12 pawns in the same square was really a challenge accepted for me (I am not that good in CSS).
-The solution I came up was to increase the pawn size when two or more of the same color get together, therefore, instead of 12 minor pawns I could just delegate this logic to the backend and put a maximum of 4 greater pawns in the same square. Their sizes can increase and decrease based on how many pawns are grouped together.
+The rule that allows you to put 12 pawns in the same square was
+really a challenge accepted for me (I am not that good in CSS).
+The solution I came up was to increase the pawn size when two
+or more of the same color get together, therefore, instead
+of 12 minor pawns I could just delegate this logic to the
+backend and put a maximum of 4 greater pawns in the same square.
+Their sizes can increase and decrease based on how many pawns
+are grouped together.
 ```
 
 ## Technology Stack
