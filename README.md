@@ -78,8 +78,7 @@ The solution I came up was to increase the pawn size when two or more of the sam
 * [React Input Mask](https://github.com/sanniassin/react-input-mask)
 * [React Dice Roll](https://github.com/avaneeshtripathi/react-dice-roll)
 * [React Icons](https://react-icons.github.io/react-icons/icons?name=gi) / [Game Icons](https://game-icons.net/)
-
-
+* [Vercel](https://vercel.com/)
 
 
 ## Known Issues
