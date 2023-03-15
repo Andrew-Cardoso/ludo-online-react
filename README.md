@@ -13,6 +13,7 @@ This repo is linked to `Vercel`, available for playing, and I will keep updating
 
 #### Creating a game
 
+[Sussu's Ludo.webm](https://user-images.githubusercontent.com/62756962/225396716-7c4f2547-11e5-4cd1-be28-5639361e4bba.webm)
 
 
 
